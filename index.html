@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitbitX Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- INTRO SCREEN -->
+<div class="intro-screen" id="introScreen">
+    <div class="intro-logo">
+        <div class="intro-icon">
+            <i class="fa-solid fa-bolt-lightning"></i>
+        </div>
+
+        <h1 class="intro-title scramble">
+            FitbitX
+        </h1>
+
+        <p class="intro-sub scramble">
+            Smart Health Intelligence
+        </p>
+    </div>
+</div>
+
+<!-- Background mesh -->
+<div class="mesh-bg">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="logo">
+    <div class="logo-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+    <span class="logo-text">FitbitX</span>
+  </div>
+  <nav class="nav">
+    <a class="nav-item active" data-section="today">
+      <div class="nav-ico"><i class="fa-solid fa-gauge-high"></i></div>
+      <span>Today</span>
+    </a>
+    <a class="nav-item" data-section="coach">
+      <div class="nav-ico"><i class="fa-solid fa-dumbbell"></i></div>
+      <span>Coach</span>
+    </a>
+    <a class="nav-item" data-section="health">
+      <div class="nav-ico"><i class="fa-solid fa-heart-pulse"></i></div>
+      <span>Health</span>
+    </a>
+    <a class="nav-item" data-section="sleep">
+      <div class="nav-ico"><i class="fa-solid fa-moon"></i></div>
+      <span>Sleep</span>
+    </a>
+    <a class="nav-item" data-section="activity">
+      <div class="nav-ico"><i class="fa-solid fa-fire-flame-curved"></i></div>
+      <span>Activity</span>
+    </a>
+    <a class="nav-item" data-section="profile">
+      <div class="nav-ico"><i class="fa-solid fa-circle-user"></i></div>
+      <span>You</span>
+    </a>
+  </nav>
+  <div class="nav-footer">
+    <a class="nav-item" id="settingsBtn">
+      <div class="nav-ico"><i class="fa-solid fa-gear"></i></div>
+      <span>Settings</span>
+    </a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main" id="main">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="hamburger" id="hamburger"><i class="fa-solid fa-bars"></i></button>
+      <div>
+        <h1 id="pageTitle">Today</h1>
+        <p id="pageSubtitle">Track your health &amp; fitness journey</p>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search..." id="searchInput">
+      </div>
+      <button class="icon-btn" id="notifBtn">
+        <i class="fa-solid fa-bell"></i>
+        <span class="badge-dot" id="notifBadge">3</span>
+      </button>
+      <img src="https://i.pravatar.cc/100?img=12" class="avatar" id="avatarTopBtn" alt="profile">
+    </div>
+  </header>
+
+  <!-- NOTIFICATION PANEL -->
+  <div class="notif-panel" id="notifPanel">
+    <div class="notif-header">
+      <h3>Notifications</h3>
+      <button class="icon-btn" id="closeNotif"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="notif-list">
+      <div class="notif-item">
+        <div class="notif-ico teal"><i class="fa-solid fa-shoe-prints"></i></div>
+        <div><p>Step goal 80% reached!</p><small>2 min ago</small></div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-ico pink"><i class="fa-solid fa-heart-pulse"></i></div>
+        <div><p>Heart rate elevated: 102 BPM</p><small>15 min ago</small></div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-ico blue"><i class="fa-solid fa-droplet"></i></div>
+        <div><p>Time to hydrate! Log your water.</p><small>1 hr ago</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- ========== TODAY ========== -->
+    <section class="section active" id="sec-today">
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-ico teal"><i class="fa-solid fa-shoe-prints"></i></div>
+            <span class="stat-label">Steps</span>
+          </div>
+          <h2 class="stat-num mono" id="stepCounter">0</h2>
+          <div class="bar-track"><div class="bar-fill teal" style="width:22%"></div></div>
+          <p class="stat-hint">Goal: 10,000</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-ico orange"><i class="fa-solid fa-fire"></i></div>
+            <span class="stat-label">Calories</span>
+          </div>
+          <h2 class="stat-num mono">939</h2>
+          <div class="bar-track"><div class="bar-fill orange" style="width:43%"></div></div>
+          <p class="stat-hint">Goal: 2,200 kcal</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-ico pink"><i class="fa-solid fa-heart-pulse"></i></div>
+            <span class="stat-label">Heart Rate</span>
+          </div>
+          <h2 class="stat-num mono"><span id="hrVal">76</span> <small>BPM</small></h2>
+          <canvas id="hrMini" height="40"></canvas>
+          <p class="stat-hint" id="hrStatus">Normal range</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top">
+            <div class="stat-ico blue"><i class="fa-solid fa-person-walking"></i></div>
+            <span class="stat-label">Distance</span>
+          </div>
+          <h2 class="stat-num mono">1.8 <small>km</small></h2>
+          <div class="bar-track"><div class="bar-fill blue" style="width:36%"></div></div>
+          <p class="stat-hint">Goal: 5 km</p>
+        </div>
+      </div>
+
+      <div class="mid-row">
+        <div class="card chart-card">
+          <div class="card-head">
+            <div>
+              <h3>Weekly Activity</h3>
+              <p>Steps over the last 7 days</p>
+            </div>
+            <div class="tab-group">
+              <button class="tab active" data-metric="steps">Steps</button>
+              <button class="tab" data-metric="calories">Calories</button>
+              <button class="tab" data-metric="distance">Distance</button>
+            </div>
+          </div>
+          <canvas id="activityChart" height="110"></canvas>
+        </div>
+        <div class="card rings-card">
+          <div class="card-head">
+            <h3>Daily Rings</h3>
+            <span class="pill-green">On Track</span>
+          </div>
+          <div class="rings-wrap">
+            <div class="rings-svg-wrap">
+              <svg viewBox="0 0 160 160" width="160" height="160">
+                <circle cx="80" cy="80" r="70" fill="none" stroke="rgba(255,59,48,.15)" stroke-width="14"/>
+                <circle class="ring-prog" cx="80" cy="80" r="70" fill="none" stroke="#ff375f" stroke-width="14" stroke-dasharray="439.82" stroke-dashoffset="176" stroke-linecap="round" transform="rotate(-90 80 80)"/>
+                <circle cx="80" cy="80" r="53" fill="none" stroke="rgba(48,209,88,.15)" stroke-width="14"/>
+                <circle class="ring-prog" cx="80" cy="80" r="53" fill="none" stroke="#30d158" stroke-width="14" stroke-dasharray="332.9" stroke-dashoffset="83" stroke-linecap="round" transform="rotate(-90 80 80)"/>
+                <circle cx="80" cy="80" r="36" fill="none" stroke="rgba(50,210,226,.15)" stroke-width="14"/>
+                <circle class="ring-prog" cx="80" cy="80" r="36" fill="none" stroke="#32d2e2" stroke-width="14" stroke-dasharray="226.2" stroke-dashoffset="45" stroke-linecap="round" transform="rotate(-90 80 80)"/>
+                <text x="80" y="75" text-anchor="middle" fill="#e2e8f0" font-size="15" font-weight="700" font-family="Outfit">75%</text>
+                <text x="80" y="91" text-anchor="middle" fill="#64748b" font-size="9" font-family="Outfit">Active</text>
+              </svg>
+            </div>
+            <div class="ring-legend">
+              <div class="rleg-item"><span class="dot" style="background:#ff375f"></span><div><p>Move</p><small>450 / 600 kcal</small></div></div>
+              <div class="rleg-item"><span class="dot" style="background:#30d158"></span><div><p>Exercise</p><small>25 / 30 min</small></div></div>
+              <div class="rleg-item"><span class="dot" style="background:#32d2e2"></span><div><p>Stand</p><small>10 / 12 hrs</small></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bot-row">
+        <div class="card workout-card">
+          <div class="card-head">
+            <h3>Featured Workouts</h3>
+            <button class="link-btn" onclick="switchSection('coach')">See all <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+          <div class="workout-list">
+            <div class="workout-row">
+              <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=300&auto=format&fit=crop" alt="yoga">
+              <div class="wk-info"><h4>Morning Yoga</h4><p><i class="fa-regular fa-clock"></i> 15 min · 120 kcal</p></div>
+              <button class="start-btn" onclick="openWorkout('Morning Yoga',15,120)">Start</button>
+            </div>
+            <div class="workout-row">
+              <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=300&auto=format&fit=crop" alt="strength">
+              <div class="wk-info"><h4>Strength Training</h4><p><i class="fa-regular fa-clock"></i> 22 min · 240 kcal</p></div>
+              <button class="start-btn" onclick="openWorkout('Strength Training',22,240)">Start</button>
+            </div>
+            <div class="workout-row">
+              <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?q=80&w=300&auto=format&fit=crop" alt="hiit">
+              <div class="wk-info"><h4>HIIT Cardio</h4><p><i class="fa-regular fa-clock"></i> 20 min · 300 kcal</p></div>
+              <button class="start-btn" onclick="openWorkout('HIIT Cardio',20,300)">Start</button>
+            </div>
+          </div>
+        </div>
+        <div class="card recovery-card">
+          <div class="card-head">
+            <h3>Recovery</h3>
+            <i class="fa-solid fa-moon" style="color:#8b5cf6"></i>
+          </div>
+          <div class="sleep-donut-wrap">
+            <canvas id="sleepDonut" width="140" height="140"></canvas>
+            <div class="donut-label"><h2 class="mono">7.5h</h2><p>Sleep</p></div>
+          </div>
+          <div class="rec-stats">
+            <div class="rec-item"><span>Deep Sleep</span><b class="mono">1.8h</b></div>
+            <div class="rec-item"><span>REM</span><b class="mono">2.1h</b></div>
+            <div class="rec-item"><span>Score</span><b class="mono teal-text">92%</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== COACH ========== -->
+    <section class="section" id="sec-coach">
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico teal"><i class="fa-solid fa-trophy"></i></div><span class="stat-label">Weekly Goal</span></div>
+          <h2 class="stat-num mono">3 <small>/ 5</small></h2>
+          <div class="bar-track"><div class="bar-fill teal" style="width:60%"></div></div>
+          <p class="stat-hint">Sessions this week</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico orange"><i class="fa-solid fa-utensils"></i></div><span class="stat-label">Calorie Target</span></div>
+          <h2 class="stat-num mono">2,200</h2>
+          <div class="bar-track"><div class="bar-fill orange" style="width:43%"></div></div>
+          <p class="stat-hint">939 consumed today</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico blue"><i class="fa-solid fa-person-running"></i></div><span class="stat-label">Active Minutes</span></div>
+          <h2 class="stat-num mono">42 <small>min</small></h2>
+          <div class="bar-track"><div class="bar-fill blue" style="width:84%"></div></div>
+          <p class="stat-hint">Goal: 50 min</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico pink"><i class="fa-solid fa-bolt"></i></div><span class="stat-label">Streak</span></div>
+          <h2 class="stat-num mono">12 <small>days</small></h2>
+          <div class="bar-track"><div class="bar-fill pink" style="width:100%"></div></div>
+          <p class="stat-hint">🔥 Personal best!</p>
+        </div>
+      </div>
+
+      <div class="mid-row">
+        <div class="card">
+          <div class="card-head"><h3>AI Recommendations</h3><span class="pill-purple">Personalized</span></div>
+          <div class="ai-tips">
+            <div class="ai-tip">
+              <div class="tip-ico teal"><i class="fa-solid fa-droplet"></i></div>
+              <div class="tip-body"><h4>Increase Hydration</h4><p>You're slightly below your hydration goal. Aim for 3L on workout days.</p></div>
+              <button class="done-btn" onclick="markDone(this)">Done</button>
+            </div>
+            <div class="ai-tip">
+              <div class="tip-ico purple"><i class="fa-solid fa-bed"></i></div>
+              <div class="tip-body"><h4>Earlier Bedtime</h4><p>Sleeping before 11 PM could improve your REM by 18%. Try tonight!</p></div>
+              <button class="done-btn" onclick="markDone(this)">Done</button>
+            </div>
+            <div class="ai-tip">
+              <div class="tip-ico orange"><i class="fa-solid fa-dumbbell"></i></div>
+              <div class="tip-body"><h4>Add Mobility Work</h4><p>Include 10 min stretching post-workout to improve recovery score.</p></div>
+              <button class="done-btn" onclick="markDone(this)">Done</button>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>This Week</h3></div>
+          <div class="week-grid">
+            <div class="day-box done"><span>Mon</span><div class="day-pip done-pip"></div><small>Yoga</small></div>
+            <div class="day-box done"><span>Tue</span><div class="day-pip done-pip"></div><small>Strength</small></div>
+            <div class="day-box done"><span>Wed</span><div class="day-pip done-pip"></div><small>Rest</small></div>
+            <div class="day-box today-box"><span>Thu</span><div class="day-pip today-pip"></div><small>HIIT</small></div>
+            <div class="day-box"><span>Fri</span><div class="day-pip"></div><small>Run</small></div>
+            <div class="day-box"><span>Sat</span><div class="day-pip"></div><small>Swim</small></div>
+            <div class="day-box"><span>Sun</span><div class="day-pip"></div><small>Rest</small></div>
+          </div>
+          <div class="next-session">
+            <h4>Next: HIIT Cardio</h4>
+            <p>Today · 6:00 PM · 20 min</p>
+            <button class="start-btn block-btn" onclick="openWorkout('HIIT Cardio',20,300)"><i class="fa-solid fa-play"></i> Start Session</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Weekly Progress</h3></div>
+        <canvas id="progressChart" height="90"></canvas>
+      </div>
+    </section>
+
+    <!-- ========== HEALTH ========== -->
+    <section class="section" id="sec-health">
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico teal"><i class="fa-solid fa-weight-scale"></i></div><span class="stat-label">Weight</span></div>
+          <h2 class="stat-num mono">51 <small>kg</small></h2>
+          <div class="bar-track"><div class="bar-fill teal" style="width:51%"></div></div>
+          <p class="stat-hint">BMI: 19.5 · Normal</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico blue"><i class="fa-solid fa-droplet"></i></div><span class="stat-label">Water Intake</span></div>
+          <h2 class="stat-num mono" id="waterNum">2.5 <small>L</small></h2>
+          <div class="bar-track"><div class="bar-fill blue" id="waterBarFill" style="width:83%"></div></div>
+          <p class="stat-hint">Goal: 3L</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico pink"><i class="fa-solid fa-heart"></i></div><span class="stat-label">Resting HR</span></div>
+          <h2 class="stat-num mono">62 <small>bpm</small></h2>
+          <div class="bar-track"><div class="bar-fill pink" style="width:62%"></div></div>
+          <p class="stat-hint">Excellent range</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico orange"><i class="fa-solid fa-lungs"></i></div><span class="stat-label">SpO2</span></div>
+          <h2 class="stat-num mono">98 <small>%</small></h2>
+          <div class="bar-track"><div class="bar-fill orange" style="width:98%"></div></div>
+          <p class="stat-hint">Normal oxygen level</p>
+        </div>
+      </div>
+
+      <div class="mid-row">
+        <div class="card">
+          <div class="card-head">
+            <h3>Water Tracker</h3>
+            <span class="mono teal-text" id="glassCount">5 / 8 glasses</span>
+          </div>
+          <div class="glass-grid" id="glassGrid">
+            <div class="glass filled" onclick="toggleGlass(this)"><i class="fa-solid fa-glass-water"></i></div>
+            <div class="glass filled" onclick="toggleGlass(this)"><i class="fa-solid fa-glass-water"></i></div>
+            <div class="glass filled" onclick="toggleGlass(this)"><i class="fa-solid fa-glass-water"></i></div>
+            <div class="glass filled" onclick="toggleGlass(this)"><i class="fa-solid fa-glass-water"></i></div>
+            <div class="glass filled" onclick="toggleGlass(this)"><i class="fa-solid fa-glass-water"></i></div>
+            <div class="glass" onclick="toggleGlass(this)"><i class="fa-solid fa-glass-water"></i></div>
+            <div class="glass" onclick="toggleGlass(this)"><i class="fa-solid fa-glass-water"></i></div>
+            <div class="glass" onclick="toggleGlass(this)"><i class="fa-solid fa-glass-water"></i></div>
+          </div>
+          <div class="water-visual">
+            <div class="water-fill" id="waterFill" style="height:83%"></div>
+            <div class="water-label" id="waterLabel">83%</div>
+          </div>
+          <p class="stat-hint" style="margin-top:8px">Tap glasses to log intake</p>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Health Overview</h3></div>
+          <div class="health-rows">
+            <div class="health-row">
+              <div class="hlabel"><i class="fa-solid fa-brain" style="color:#8b5cf6"></i><span>Mindfulness</span></div>
+              <div class="hright"><div class="prog-track"><div class="prog-fill" style="width:70%;background:#8b5cf6"></div></div><b>14 min</b></div>
+            </div>
+            <div class="health-row">
+              <div class="hlabel"><i class="fa-solid fa-person-walking" style="color:#00e5c3"></i><span>Activity Level</span></div>
+              <div class="hright"><div class="prog-track"><div class="prog-fill" style="width:45%;background:#00e5c3"></div></div><b>Moderate</b></div>
+            </div>
+            <div class="health-row">
+              <div class="hlabel"><i class="fa-solid fa-bed" style="color:#7dd3fc"></i><span>Sleep Quality</span></div>
+              <div class="hright"><div class="prog-track"><div class="prog-fill" style="width:92%;background:#7dd3fc"></div></div><b>92%</b></div>
+            </div>
+            <div class="health-row">
+              <div class="hlabel"><i class="fa-solid fa-fire" style="color:#fb923c"></i><span>Metabolism</span></div>
+              <div class="hright"><div class="prog-track"><div class="prog-fill" style="width:78%;background:#fb923c"></div></div><b>Active</b></div>
+            </div>
+            <div class="health-row">
+              <div class="hlabel"><i class="fa-solid fa-dna" style="color:#f472b6"></i><span>Recovery</span></div>
+              <div class="hright"><div class="prog-track"><div class="prog-fill" style="width:88%;background:#f472b6"></div></div><b>High</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SLEEP ========== -->
+    <section class="section" id="sec-sleep">
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico blue"><i class="fa-solid fa-moon"></i></div><span class="stat-label">Duration</span></div>
+          <h2 class="stat-num mono">7.5 <small>hrs</small></h2>
+          <div class="bar-track"><div class="bar-fill blue" style="width:94%"></div></div>
+          <p class="stat-hint">Goal: 8 hours</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico purple"><i class="fa-solid fa-star"></i></div><span class="stat-label">Sleep Score</span></div>
+          <h2 class="stat-num mono">92</h2>
+          <div class="bar-track"><div class="bar-fill purple" style="width:92%"></div></div>
+          <p class="stat-hint">Excellent quality</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico teal"><i class="fa-solid fa-clock"></i></div><span class="stat-label">Bedtime</span></div>
+          <h2 class="stat-num mono">11:20 <small>PM</small></h2>
+          <div class="bar-track"><div class="bar-fill teal" style="width:60%"></div></div>
+          <p class="stat-hint">Last night</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico orange"><i class="fa-solid fa-sun"></i></div><span class="stat-label">Wake Time</span></div>
+          <h2 class="stat-num mono">6:50 <small>AM</small></h2>
+          <div class="bar-track"><div class="bar-fill orange" style="width:72%"></div></div>
+          <p class="stat-hint">Natural wake</p>
+        </div>
+      </div>
+
+      <div class="mid-row">
+        <div class="card">
+          <div class="card-head"><h3>Sleep Stages</h3><span class="pill-green">Last Night</span></div>
+          <canvas id="sleepStagesChart" height="120"></canvas>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Sleep Tips</h3></div>
+          <div class="tips-list">
+            <div class="tip-row" onclick="this.classList.toggle('open')">
+              <i class="fa-solid fa-moon" style="color:#8b5cf6"></i>
+              <div><h4>Consistent Schedule</h4><p>Sleeping at the same time daily improves deep sleep.</p></div>
+              <i class="fa-solid fa-chevron-down chev"></i>
+            </div>
+            <div class="tip-row" onclick="this.classList.toggle('open')">
+              <i class="fa-solid fa-mobile-screen-button" style="color:#7dd3fc"></i>
+              <div><h4>Limit Screen Time</h4><p>Avoid screens 1 hr before bed to improve melatonin.</p></div>
+              <i class="fa-solid fa-chevron-down chev"></i>
+            </div>
+            <div class="tip-row" onclick="this.classList.toggle('open')">
+              <i class="fa-solid fa-temperature-low" style="color:#00e5c3"></i>
+              <div><h4>Cool Environment</h4><p>Keep room at 18–20°C for optimal REM sleep.</p></div>
+              <i class="fa-solid fa-chevron-down chev"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>7-Day Sleep History</h3></div>
+        <canvas id="sleepHistChart" height="90"></canvas>
+      </div>
+    </section>
+
+    <!-- ========== ACTIVITY ========== -->
+    <section class="section" id="sec-activity">
+      <div class="stat-row">
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico teal"><i class="fa-solid fa-shoe-prints"></i></div><span class="stat-label">Total Steps</span></div>
+          <h2 class="stat-num mono">2,244</h2>
+          <div class="bar-track"><div class="bar-fill teal" style="width:22%"></div></div>
+          <p class="stat-hint">Goal: 10,000</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico orange"><i class="fa-solid fa-fire-flame-curved"></i></div><span class="stat-label">Active Calories</span></div>
+          <h2 class="stat-num mono">450</h2>
+          <div class="bar-track"><div class="bar-fill orange" style="width:75%"></div></div>
+          <p class="stat-hint">Goal: 600 kcal</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico blue"><i class="fa-solid fa-person-running"></i></div><span class="stat-label">Active Time</span></div>
+          <h2 class="stat-num mono">42 <small>min</small></h2>
+          <div class="bar-track"><div class="bar-fill blue" style="width:84%"></div></div>
+          <p class="stat-hint">Goal: 50 min</p>
+        </div>
+        <div class="stat-card">
+          <div class="stat-top"><div class="stat-ico pink"><i class="fa-solid fa-stairs"></i></div><span class="stat-label">Floors</span></div>
+          <h2 class="stat-num mono">8</h2>
+          <div class="bar-track"><div class="bar-fill pink" style="width:80%"></div></div>
+          <p class="stat-hint">Goal: 10 floors</p>
+        </div>
+      </div>
+
+      <div class="mid-row">
+        <div class="card">
+          <div class="card-head"><h3>Hourly Steps</h3></div>
+          <canvas id="hourlyChart" height="110"></canvas>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>Recent Activities</h3></div>
+          <div class="activity-log">
+            <div class="log-row"><div class="log-ico teal-ico"><i class="fa-solid fa-person-walking"></i></div><div class="log-body"><h4>Morning Walk</h4><p>7:30 AM · 1,244 steps</p></div><span class="log-kcal teal-text">+85 kcal</span></div>
+            <div class="log-row"><div class="log-ico orange-ico"><i class="fa-solid fa-dumbbell"></i></div><div class="log-body"><h4>Strength Session</h4><p>9:00 AM · 22 min</p></div><span class="log-kcal" style="color:#fb923c">+240 kcal</span></div>
+            <div class="log-row"><div class="log-ico purple-ico"><i class="fa-solid fa-om"></i></div><div class="log-body"><h4>Yoga</h4><p>11:00 AM · 15 min</p></div><span class="log-kcal" style="color:#8b5cf6">+120 kcal</span></div>
+            <div class="log-row"><div class="log-ico blue-ico"><i class="fa-solid fa-stairs"></i></div><div class="log-body"><h4>Stair Climbing</h4><p>2:30 PM · 8 floors</p></div><span class="log-kcal" style="color:#7dd3fc">+60 kcal</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROFILE ========== -->
+    <section class="section" id="sec-profile">
+      <div class="profile-hero">
+        <div class="card profile-card">
+          <div class="profile-banner"></div>
+          <div class="profile-body">
+            <div class="profile-av-wrap">
+              <img src="https://i.pravatar.cc/200?img=12" id="profileAvatar" class="profile-av" alt="profile">
+              <button class="av-edit-btn" onclick="document.getElementById('avInput').click()"><i class="fa-solid fa-camera"></i></button>
+              <input type="file" id="avInput" accept="image/*" style="display:none" onchange="changeAvatar(event)">
+            </div>
+            <div class="profile-info">
+              <h2 id="profileName">Vedananda</h2>
+              <p>Fitness Enthusiast · Member since 2023</p>
+              <div class="tag-row">
+                <span class="ptag">🏃 Runner</span>
+                <span class="ptag">🧘 Yoga</span>
+                <span class="ptag">🧠 Mindfulness</span>
+                <span class="ptag">💪 Strength</span>
+              </div>
+            </div>
+            <button class="edit-profile-btn" onclick="toggleEditForm()"><i class="fa-solid fa-pen"></i> Edit Profile</button>
+          </div>
+        </div>
+        <div class="p-stats-grid">
+          <div class="card p-stat"><h3 class="mono">12</h3><p>Day Streak</p><i class="fa-solid fa-fire" style="color:#fb923c"></i></div>
+          <div class="card p-stat"><h3 class="mono">47</h3><p>Workouts</p><i class="fa-solid fa-dumbbell" style="color:#00e5c3"></i></div>
+          <div class="card p-stat"><h3 class="mono">342</h3><p>km Total</p><i class="fa-solid fa-person-running" style="color:#7dd3fc"></i></div>
+          <div class="card p-stat"><h3 class="mono">8</h3><p>Badges</p><i class="fa-solid fa-medal" style="color:#fbbf24"></i></div>
+        </div>
+      </div>
+
+      <div class="card edit-form-card" id="editFormCard" style="display:none">
+        <div class="card-head">
+          <h3>Edit Profile</h3>
+          <button class="icon-btn" onclick="toggleEditForm()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="form-grid">
+          <div class="form-group"><label>Full Name</label><input class="form-inp" type="text" id="editName" value="Vedananda"></div>
+          <div class="form-group"><label>Age</label><input class="form-inp" type="number" id="editAge" value="28"></div>
+          <div class="form-group"><label>Weight (kg)</label><input class="form-inp" type="number" id="editWeight" value="51"></div>
+          <div class="form-group"><label>Height (cm)</label><input class="form-inp" type="number" id="editHeight" value="165"></div>
+          <div class="form-group"><label>Step Goal</label><input class="form-inp" type="number" id="editStepGoal" value="10000"></div>
+          <div class="form-group"><label>Calorie Goal</label><input class="form-inp" type="number" id="editCalGoal" value="2200"></div>
+        </div>
+        <button class="start-btn save-btn" onclick="saveProfile()">Save Changes</button>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Achievements</h3></div>
+        <div class="badges-grid">
+          <div class="badge-cell earned"><i class="fa-solid fa-fire"></i><p>7-Day Streak</p></div>
+          <div class="badge-cell earned"><i class="fa-solid fa-shoe-prints"></i><p>10k Steps</p></div>
+          <div class="badge-cell earned"><i class="fa-solid fa-moon"></i><p>Sleep Star</p></div>
+          <div class="badge-cell earned"><i class="fa-solid fa-droplet"></i><p>Hydrated</p></div>
+          <div class="badge-cell locked"><i class="fa-solid fa-trophy"></i><p>Marathon</p></div>
+          <div class="badge-cell locked"><i class="fa-solid fa-mountain"></i><p>Climber</p></div>
+          <div class="badge-cell locked"><i class="fa-solid fa-dumbbell"></i><p>Iron Will</p></div>
+          <div class="badge-cell locked"><i class="fa-solid fa-heart"></i><p>Heart Hero</p></div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /content -->
+</main>
+
+<!-- WORKOUT MODAL -->
+<div class="overlay" id="workoutOverlay">
+  <div class="modal" id="workoutModal">
+    <div class="modal-head">
+      <h3 id="modalTitle">Morning Yoga</h3>
+      <button class="icon-btn" onclick="closeWorkout()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="timer-wrap">
+        <svg viewBox="0 0 120 120" width="160" height="160">
+          <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(0,229,195,.15)" stroke-width="8"/>
+          <circle cx="60" cy="60" r="52" fill="none" stroke="#00e5c3" stroke-width="8" stroke-dasharray="326.7" stroke-dashoffset="326.7" stroke-linecap="round" transform="rotate(-90 60 60)" id="timerRing"/>
+        </svg>
+        <div class="timer-center">
+          <span class="mono" id="timerDisplay">00:00</span>
+          <small>elapsed</small>
+        </div>
+      </div>
+      <div class="modal-stats">
+        <div><h4 class="mono" id="modalDur">15</h4><p>Duration (min)</p></div>
+        <div><h4 class="mono" id="modalKcal">0</h4><p>kcal burned</p></div>
+        <div><h4 class="mono" id="modalBPM">76</h4><p>BPM</p></div>
+      </div>
+      <div class="modal-controls">
+        <button class="ctrl-btn" id="pauseBtn" onclick="togglePause()"><i class="fa-solid fa-pause" id="pauseIcon"></i></button>
+        <button class="ctrl-btn primary" id="startModalBtn" onclick="beginWorkout()"><i class="fa-solid fa-play"></i> Begin</button>
+        <button class="ctrl-btn danger" onclick="closeWorkout()"><i class="fa-solid fa-stop"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS OVERLAY -->
+<div class="overlay" id="settingsOverlay">
+  <div class="modal settings-modal">
+    <div class="modal-head">
+      <h3>Settings</h3>
+      <button class="icon-btn" onclick="closeSettings()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="settings-body">
+      <div class="setting-row">
+        <div><h4>Notifications</h4><p>Activity reminders and alerts</p></div>
+        <div class="toggle on" onclick="this.classList.toggle('on')"><div class="knob"></div></div>
+      </div>
+      <div class="setting-row">
+        <div><h4>Heart Rate Monitor</h4><p>Continuous tracking enabled</p></div>
+        <div class="toggle on" onclick="this.classList.toggle('on')"><div class="knob"></div></div>
+      </div>
+      <div class="setting-row">
+        <div><h4>Sleep Tracking</h4><p>Automatic sleep detection</p></div>
+        <div class="toggle on" onclick="this.classList.toggle('on')"><div class="knob"></div></div>
+      </div>
+      <div class="setting-row">
+        <div><h4>GPS Tracking</h4><p>Location for outdoor workouts</p></div>
+        <div class="toggle" onclick="this.classList.toggle('on')"><div class="knob"></div></div>
+      </div>
+      <div class="setting-row">
+        <div><h4>Units</h4><p>Measurement system</p></div>
+        <select class="form-inp" style="width:auto;padding:8px 14px">
+          <option>Metric (kg, km)</option>
+          <option>Imperial (lb, mi)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
