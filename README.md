@@ -33,27 +33,32 @@ The goal of this project is to create a smart, user-friendly fitness dashboard u
 
 ## Team Members and Roles
 
-### 1. Your Name
+### 1. Vedananda reddy.Ramireddy
 
 **Role:** Frontend Developer
 Responsible for HTML structure, dashboard layout, and page design.
 
-### 2. Team Member Name
+### 2. Tarun v
 
 **Role:** CSS Designer
 Responsible for styling, responsiveness, animations, and UI improvements.
 
-### 3. Team Member Name
+### 3. Sai Ashish B
 
 **Role:** JavaScript Developer
 Responsible for interactivity, charts, workout timer, notifications, and dynamic features.
 
-### 4. Team Member Name
+### 4. Sahith E
 
 **Role:** Testing and Documentation
 Responsible for testing, bug fixing, README preparation, and screenshots.
 
-(Replace with actual team member names)
+### 5. Hardhik b
+
+**Role:** Testing and Documentation
+Responsible for testing, bug fixing, README preparation, and screenshots.
+
+
 
 ---
 
