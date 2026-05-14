@@ -589,3 +589,52 @@ window.addEventListener("load", () => {
     }, 700);
 
 });
+/* CONTACT PAGE FIX */
+
+function switchSection(sectionName) {
+  document.querySelectorAll(".section").forEach(section => {
+    section.classList.remove("active");
+  });
+
+  document.querySelectorAll(".nav-item").forEach(item => {
+    item.classList.remove("active");
+  });
+
+  const targetSection = document.getElementById("sec-" + sectionName);
+  if (targetSection) {
+    targetSection.classList.add("active");
+  }
+
+  const activeNav = document.querySelector(`[data-section="${sectionName}"]`);
+  if (activeNav) {
+    activeNav.classList.add("active");
+  }
+
+  document.getElementById("pageTitle").innerText =
+    sectionName.charAt(0).toUpperCase() + sectionName.slice(1);
+}
+
+
+/* NAVIGATION CLICK */
+
+document.querySelectorAll(".nav-item").forEach(item => {
+  item.addEventListener("click", function () {
+    const section = this.getAttribute("data-section");
+    if (section) {
+      switchSection(section);
+    }
+  });
+});
+
+
+/* CONTACT FORM SUBMIT */
+
+document
+  .getElementById("contactForm")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    alert("Message sent successfully!");
+
+    this.reset();
+  });
