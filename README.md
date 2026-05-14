@@ -2,12 +2,6 @@
 
 ## GitHub Repository Link
 
-Add your GitHub hosted website repository link here:
-
-Example:
-https://github.com/your-username/FitbitX-Dashboard
-
-(Replace with your actual GitHub repository link)
 
 ---
 
@@ -113,33 +107,8 @@ All navigation links, buttons, forms, and interactive elements work correctly.
 
 ---
 
-## Screenshots of Final Website
 
-### Home Dashboard
 
-(Add Screenshot Here)
-
-### AI Coach Section
-
-(Add Screenshot Here)
-
-### Sleep Tracking Section
-
-(Add Screenshot Here)
-
-### Activity Analytics Section
-
-(Add Screenshot Here)
-
-### Profile Section
-
-(Add Screenshot Here)
-
-### Contact Section
-
-(Add Screenshot Here)
-
-(Insert actual screenshots of your final website)
 
 ---
 
