@@ -474,3 +474,58 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);disp
         filter:blur(0);
     }
 }
+/* Paste this in your existing style.css */
+
+.about-us {
+    padding: 60px 10%;
+    background: #f4f7fa;
+    text-align: center;
+}
+
+.about-us h2 {
+    font-size: 32px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.about-text {
+    max-width: 900px;
+    margin: 0 auto 20px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #444;
+}
+
+.team-title {
+    margin-top: 50px;
+}
+
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.member-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+}
+
+.member-card h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.member-card p {
+    margin: 6px 0;
+    font-size: 15px;
+    color: #555;
+}
