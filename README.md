@@ -2,7 +2,7 @@
 
 ## GitHub Repository Link
 
-https://github.com/vedananda007/FitbitX.git
+vedananda007.github.io/FitbitX/
 ---
 
 ## Theme Description
