@@ -524,103 +524,173 @@
 
   <!-- Profile Hero -->
   <div class="profile-hero">
+    <div class="card profile-card">
+      <div class="profile-banner"></div>
 
-    <div class="profile-card">
-      <div class="profile-top">
-        <img 
-          src="https://i.pravatar.cc/150?img=12" 
-          alt="Profile" 
-          class="profile-avatar"
-        >
+      <div class="profile-body">
+        <div class="profile-av-wrap">
+          <img src="https://i.pravatar.cc/200?img=12" id="profileAvatar" class="profile-av" alt="profile">
 
-        <div class="profile-details">
-          <h2>Sudheer Reddy</h2>
-          <p>Fitness Enthusiast • Student • Developer</p>
+          <button class="av-edit-btn" onclick="document.getElementById('avInput').click()">
+            <i class="fa-solid fa-camera"></i>
+          </button>
 
-          <div class="profile-badges">
-            <span class="profile-badge">🔥 12 Day Streak</span>
-            <span class="profile-badge">🏆 Goal Crusher</span>
-            <span class="profile-badge">💪 Active Member</span>
+          <input type="file" id="avInput" accept="image/*" style="display:none" onchange="changeAvatar(event)">
+        </div>
+
+        <div class="profile-info">
+          <h2 id="profileName">Vedananda</h2>
+          <p>Fitness Enthusiast · Member since 2023</p>
+
+          <div class="tag-row">
+            <span class="ptag">🏃 Runner</span>
+            <span class="ptag">🧘 Yoga</span>
+            <span class="ptag">🧠 Mindfulness</span>
+            <span class="ptag">💪 Strength</span>
           </div>
         </div>
-      </div>
 
-      <div class="profile-stats">
-
-        <div class="p-stat">
-          <h3>2244</h3>
-          <p>Steps Today</p>
-        </div>
-
-        <div class="p-stat">
-          <h3>7.5h</h3>
-          <p>Sleep</p>
-        </div>
-
-        <div class="p-stat">
-          <h3>939</h3>
-          <p>Calories</p>
-        </div>
-
-        <div class="p-stat">
-          <h3>51kg</h3>
-          <p>Weight</p>
-        </div>
-
+        <button class="edit-profile-btn" onclick="toggleEditForm()">
+          <i class="fa-solid fa-pen"></i> Edit Profile
+        </button>
       </div>
     </div>
 
+    <!-- Stats -->
+    <div class="p-stats-grid">
+      <div class="card p-stat">
+        <h3 class="mono">12</h3>
+        <p>Day Streak</p>
+      </div>
+
+      <div class="card p-stat">
+        <h3 class="mono">47</h3>
+        <p>Workouts</p>
+      </div>
+
+      <div class="card p-stat">
+        <h3 class="mono">342</h3>
+        <p>km Total</p>
+      </div>
+
+      <div class="card p-stat">
+        <h3 class="mono">8</h3>
+        <p>Badges</p>
+      </div>
+    </div>
   </div>
 
-  <!-- About Section -->
-  <div class="about-section">
+  <!-- Edit Form -->
+  <div class="card edit-form-card" id="editFormCard" style="display:none">
+    <div class="card-head">
+      <h3>Edit Profile</h3>
+      <button class="icon-btn" onclick="toggleEditForm()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
 
-    <h2>About FitbitX</h2>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input class="form-inp" type="text" id="editName" value="Vedananda">
+      </div>
+
+      <div class="form-group">
+        <label>Age</label>
+        <input class="form-inp" type="number" id="editAge" value="28">
+      </div>
+
+      <div class="form-group">
+        <label>Weight (kg)</label>
+        <input class="form-inp" type="number" id="editWeight" value="51">
+      </div>
+
+      <div class="form-group">
+        <label>Height (cm)</label>
+        <input class="form-inp" type="number" id="editHeight" value="165">
+      </div>
+
+      <div class="form-group">
+        <label>Step Goal</label>
+        <input class="form-inp" type="number" id="editStepGoal" value="10000">
+      </div>
+
+      <div class="form-group">
+        <label>Calorie Goal</label>
+        <input class="form-inp" type="number" id="editCalGoal" value="2200">
+      </div>
+    </div>
+
+    <button class="start-btn save-btn" onclick="saveProfile()">
+      Save Changes
+    </button>
+  </div>
+
+  <!-- Achievements -->
+  <div class="card">
+    <div class="card-head">
+      <h3>Achievements</h3>
+    </div>
+
+    <div class="badges-grid">
+      <div class="badge-cell earned"><p>🔥 7-Day Streak</p></div>
+      <div class="badge-cell earned"><p>👣 10k Steps</p></div>
+      <div class="badge-cell earned"><p>🌙 Sleep Star</p></div>
+      <div class="badge-cell earned"><p>💧 Hydrated</p></div>
+      <div class="badge-cell locked"><p>🏆 Marathon</p></div>
+      <div class="badge-cell locked"><p>⛰ Climber</p></div>
+      <div class="badge-cell locked"><p>💪 Iron Will</p></div>
+      <div class="badge-cell locked"><p>❤️ Heart Hero</p></div>
+    </div>
+  </div>
+
+  <!-- ABOUT PAGE -->
+  <div class="card about-section">
+    <div class="card-head">
+      <h3>About FitbitX</h3>
+    </div>
 
     <p>
       FitbitX is a modern fitness and gym management web application designed
       to help users manage their health and fitness journey effectively.
-      Our project provides features like workout tracking, membership management,
-      trainer details, fitness plans, and progress monitoring.
+      It includes workout tracking, membership management, trainer details,
+      fitness plans, and progress monitoring.
     </p>
 
     <p>
       This project was developed as part of our academic case study by a team
-      of passionate Computer Science students. We focused on creating a clean
-      design, smooth user experience, and practical features.
+      of passionate Computer Science students with focus on clean UI,
+      smooth user experience, and practical features.
     </p>
 
-    <h2>Student Contributors</h2>
+    <h3>Student Contributors</h3>
 
     <div class="contributors">
-
       <div class="member">
-        <h3>Vedananda Reddy Ramireddy</h3>
-        <p>Roll No: AM.SC.U4CSE25343</p>
+        <h4>Vedananda Reddy Ramireddy</h4>
+        <p>AM.SC.U4CSE25343</p>
       </div>
 
       <div class="member">
-        <h3>Tarun V</h3>
-        <p>Roll No: AM.SC.U4CSE25357</p>
+        <h4>Tarun V</h4>
+        <p>AM.SC.U4CSE25357</p>
       </div>
 
       <div class="member">
-        <h3>Sahith E</h3>
-        <p>Roll No: AM.SC.U4CSE25315</p>
+        <h4>Sahith E</h4>
+        <p>AM.SC.U4CSE25315</p>
       </div>
 
       <div class="member">
-        <h3>Sai Ashish B</h3>
-        <p>Roll No: AM.SC.U4CSE25309</p>
+        <h4>Sai Ashish B</h4>
+        <p>AM.SC.U4CSE25309</p>
       </div>
 
       <div class="member">
-        <h3>Hardhik B</h3>
-        <p>Roll No: AM.SC.U4CSE25308</p>
+        <h4>Hardhik B</h4>
+        <p>AM.SC.U4CSE25308</p>
       </div>
-
     </div>
-
   </div>
 
 </section>
